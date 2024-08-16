@@ -1,6 +1,6 @@
 import * as React from 'react';
 import {View, Text, Image} from 'react-native';
-import {styles} from './ListItemStyles';
+import {styles} from './styles';
 
 interface ListItemProps {
   imageSource: {uri: string};
