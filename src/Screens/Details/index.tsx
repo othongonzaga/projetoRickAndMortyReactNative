@@ -6,7 +6,7 @@ import ListItem from '@components/ListItem';
 import logo from '@assets/images/logo.png';
 import backArrow from '@assets/images/back-arrow.png';
 import line from '@assets/images/Line.png';
-import {styles} from './DetailsStyles';
+import {styles} from './styles';
 
 export default function DetailsScreen() {
   const navigation = useNavigation();
