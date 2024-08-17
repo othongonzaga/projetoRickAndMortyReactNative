@@ -16,6 +16,6 @@ export const styles = StyleSheet.create({
     alignSelf: 'center',
     width: '105%',
     height: 90,
-    marginVertical: 50,
+    marginVertical: 30,
   },
 });
