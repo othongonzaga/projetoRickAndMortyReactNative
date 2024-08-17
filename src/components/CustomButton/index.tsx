@@ -1,6 +1,6 @@
 import * as React from 'react';
 import {TouchableOpacity, Text} from 'react-native';
-import {styles} from './CustomButtonStyles';
+import {styles} from './styles';
 
 interface CustomButtonProps {
   text: string;
