@@ -18,4 +18,10 @@ export const styles = StyleSheet.create({
     height: 90,
     marginVertical: 30,
   },
+  errorText: {
+    color: 'red',
+    fontSize: 18,
+    marginTop: 20,
+    textAlign: 'center',
+  },
 });

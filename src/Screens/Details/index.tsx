@@ -1,6 +1,6 @@
 import * as React from 'react';
 import {useEffect, useState} from 'react';
-import {View, Image, TouchableOpacity, FlatList} from 'react-native';
+import {View, Image, TouchableOpacity, FlatList, Text} from 'react-native';
 import {useNavigation} from '@react-navigation/native';
 import axios from 'axios';
 import SearchInput from '@components/SearchInput';
@@ -15,16 +15,28 @@ import {Character} from '@types/Character';
 export default function DetailsScreen() {
   const navigation = useNavigation();
   const [characters, setCharacters] = useState<Character[]>([]);
+  const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
-    axios
-      .get('https://rickandmortyapi.com/api/character')
-      .then(response => {
-        setCharacters(response.data.results);
-      })
-      .catch(error => {
+    const fetchCharacters = async () => {
+      try {
+        const response = await axios.get(
+          'https://rickandmortyapi.com/api/character',
+        );
+        if (response.data && response.data.results) {
+          setCharacters(response.data.results);
+        } else {
+          throw new Error('Unexpected API response');
+        }
+      } catch (error) {
         console.error(error);
-      });
+        setError(
+          'Something went wrong while searching. Please try again later.',
+        );
+      }
+    };
+
+    fetchCharacters();
   }, []);
 
   return (
@@ -37,18 +49,23 @@ export default function DetailsScreen() {
       <Image source={logo} style={styles.logo} />
       <SearchInput placeholder="Find a character" />
       <TextWithImage text="Characters" imageSource={line} />
-      <FlatList
-        data={characters}
-        keyExtractor={item => item.id.toString()}
-        renderItem={({item}) => (
-          <ListItem
-            imageSource={{uri: item.image}}
-            name={item.name}
-            type={item.species}
-            description={item.location.name}
-          />
-        )}
-      />
+
+      {error ? (
+        <Text style={styles.errorText}>{error}</Text>
+      ) : (
+        <FlatList
+          data={characters}
+          keyExtractor={item => item.id.toString()}
+          renderItem={({item}) => (
+            <ListItem
+              imageSource={{uri: item.image}}
+              name={item.name}
+              type={item.species}
+              description={item.location.name}
+            />
+          )}
+        />
+      )}
     </View>
   );
 }
