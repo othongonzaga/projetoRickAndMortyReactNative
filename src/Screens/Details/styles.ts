@@ -16,6 +16,12 @@ export const styles = StyleSheet.create({
     alignSelf: 'center',
     width: '105%',
     height: 90,
-    marginVertical: 50,
+    marginVertical: 30,
+  },
+  errorText: {
+    color: 'red',
+    fontSize: 18,
+    marginTop: 20,
+    textAlign: 'center',
   },
 });
