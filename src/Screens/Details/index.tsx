@@ -6,6 +6,7 @@ import axios from 'axios';
 import SearchInput from '@components/SearchInput';
 import TextWithImage from '@components/TextWithImage';
 import ListItem from '@components/ListItem';
+import CustomButton from '@components/CustomButton';
 import logo from '@assets/images/logo.png';
 import backArrow from '@assets/images/back-arrow.png';
 import line from '@assets/images/Line.png';
@@ -16,27 +17,28 @@ export default function DetailsScreen() {
   const navigation = useNavigation();
   const [characters, setCharacters] = useState<Character[]>([]);
   const [error, setError] = useState<string | null>(null);
+  const [nextPageUrl, setNextPageUrl] = useState<string | null>(null);
+
+  const fetchCharacters = async (url: string) => {
+    try {
+      const response = await axios.get(url);
+      if (response.data && response.data.results) {
+        setCharacters(prevCharacters => [
+          ...prevCharacters,
+          ...response.data.results,
+        ]);
+        setNextPageUrl(response.data.info.next || null);
+      } else {
+        throw new Error('Unexpected API response');
+      }
+    } catch (error) {
+      console.error(error);
+      setError('Something went wrong while searching. Please try again later.');
+    }
+  };
 
   useEffect(() => {
-    const fetchCharacters = async () => {
-      try {
-        const response = await axios.get(
-          'https://rickandmortyapi.com/api/character',
-        );
-        if (response.data && response.data.results) {
-          setCharacters(response.data.results);
-        } else {
-          throw new Error('Unexpected API response');
-        }
-      } catch (error) {
-        console.error(error);
-        setError(
-          'Something went wrong while searching. Please try again later.',
-        );
-      }
-    };
-
-    fetchCharacters();
+    fetchCharacters('https://rickandmortyapi.com/api/character');
   }, []);
 
   return (
@@ -64,6 +66,18 @@ export default function DetailsScreen() {
               description={item.location.name}
             />
           )}
+          ListFooterComponent={
+            <View style={styles.loadMoreButton}>
+              {nextPageUrl ? (
+                <CustomButton
+                  text="Load More"
+                  onPress={() => fetchCharacters(nextPageUrl)}
+                />
+              ) : (
+                <Text>No more characters to load</Text>
+              )}
+            </View>
+          }
         />
       )}
     </View>

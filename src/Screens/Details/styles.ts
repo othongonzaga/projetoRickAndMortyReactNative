@@ -24,4 +24,7 @@ export const styles = StyleSheet.create({
     marginTop: 20,
     textAlign: 'center',
   },
+  loadMoreButton: {
+    marginVertical: 180,
+  },
 });
