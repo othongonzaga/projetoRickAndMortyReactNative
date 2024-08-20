@@ -38,7 +38,9 @@ export default function DetailsScreen() {
   };
 
   useEffect(() => {
-    fetchCharacters('https://rickandmortyapi.com/api/character');
+    (async () => {
+      await fetchCharacters('https://rickandmortyapi.com/api/character');
+    })();
   }, []);
 
   return (
@@ -74,7 +76,9 @@ export default function DetailsScreen() {
                   onPress={() => fetchCharacters(nextPageUrl)}
                 />
               ) : (
-                <Text>No more characters to load</Text>
+                <Text style={styles.textAfterNext}>
+                  No more characters to load
+                </Text>
               )}
             </View>
           }
