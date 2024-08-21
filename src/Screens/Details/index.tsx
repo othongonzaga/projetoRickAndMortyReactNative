@@ -18,6 +18,10 @@ export default function DetailsScreen() {
   const [characters, setCharacters] = useState<Character[]>([]);
   const [error, setError] = useState<string | null>(null);
   const [nextPageUrl, setNextPageUrl] = useState<string | null>(null);
+  const [searchHistory, setSearchHistory] = useState<{
+    [key: string]: Character[];
+  }>({});
+  const [searchTerms, setSearchTerms] = useState<string[]>([]);
 
   const fetchCharacters = async (url: string) => {
     try {
@@ -37,10 +41,36 @@ export default function DetailsScreen() {
     }
   };
 
-  const handleSearch = (searchTerm: string) => {
-    const searchUrl = `https://rickandmortyapi.com/api/character/?name=${searchTerm}`;
-    setCharacters([]);
-    fetchCharacters(searchUrl);
+  const handleSearch = async (searchTerm: string) => {
+    // Verificar se o termo já foi pesquisado
+    if (searchTerms.includes(searchTerm)) {
+      setCharacters(searchHistory[searchTerm]);
+    } else {
+      // Se o termo não foi pesquisado, faça a busca na API
+      const searchUrl = `https://rickandmortyapi.com/api/character/?name=${searchTerm}`;
+      setCharacters([]);
+
+      try {
+        const response = await axios.get(searchUrl);
+        if (response.data && response.data.results) {
+          // Atualizar o searchHistory e o array searchTerms
+          setSearchHistory(prevHistory => ({
+            ...prevHistory,
+            [searchTerm]: response.data.results,
+          }));
+          setSearchTerms(prevTerms => [...prevTerms, searchTerm]);
+          setCharacters(response.data.results);
+          setNextPageUrl(response.data.info.next || null);
+        } else {
+          throw new Error('Unexpected API response');
+        }
+      } catch (error) {
+        console.error(error);
+        setError(
+          'Something went wrong while searching. Please try again later.',
+        );
+      }
+    }
   };
 
   useEffect(() => {
