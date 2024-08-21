@@ -24,4 +24,13 @@ export const styles = StyleSheet.create({
     marginTop: 20,
     textAlign: 'center',
   },
+  loadMoreButton: {
+    marginVertical: 180,
+  },
+  textAfterNext: {
+    color: '#ffff',
+    fontSize: 18,
+    marginTop: 20,
+    textAlign: 'center',
+  },
 });
