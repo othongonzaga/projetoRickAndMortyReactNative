@@ -37,6 +37,12 @@ export default function DetailsScreen() {
     }
   };
 
+  const handleSearch = (searchTerm: string) => {
+    const searchUrl = `https://rickandmortyapi.com/api/character/?name=${searchTerm}`;
+    setCharacters([]);
+    fetchCharacters(searchUrl);
+  };
+
   useEffect(() => {
     (async () => {
       await fetchCharacters('https://rickandmortyapi.com/api/character');
@@ -51,7 +57,7 @@ export default function DetailsScreen() {
         <Image source={backArrow} style={styles.backButtonImage} />
       </TouchableOpacity>
       <Image source={logo} style={styles.logo} />
-      <SearchInput placeholder="Find a character" />
+      <SearchInput placeholder="Find a character" onSearch={handleSearch} />
       <TextWithImage text="Characters" imageSource={line} />
 
       {error ? (
