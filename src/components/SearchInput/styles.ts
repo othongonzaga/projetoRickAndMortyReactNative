@@ -16,6 +16,8 @@ export const styles = StyleSheet.create({
   },
   icon: {
     tintColor: '#EBFF6E',
-    marginLeft: 0,
+    width: 35,
+    height: 35,
+    marginTop: 15,
   },
 });
