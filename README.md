@@ -18,7 +18,8 @@ Este é um projeto desenvolvido com React Native CLI e TypeScript, inspirado na 
 - **TypeScript**: Superset do JavaScript que adiciona tipagem estática ao código.
 - **Axios**: Biblioteca para fazer requisições HTTP.
 - **React Navigation**: Biblioteca para navegação entre telas.
-- **Aliases**: O projeto utiliza aliases para facilitar as importações, tornando o código mais limpo e organizado.
+
+- Utilizei aliases para facilitar as importações e tornar o código mais limpo e organizado.
 
 ## Como Executar o Projeto
 
