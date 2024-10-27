@@ -1,79 +1,38 @@
-This is a new [**React Native**](https://reactnative.dev) project, bootstrapped using [`@react-native-community/cli`](https://github.com/react-native-community/cli).
+# Projeto Rick&Morty ReactNative
 
-# Getting Started
+Este é um projeto desenvolvido com React Native CLI e TypeScript, inspirado na famosa série "Rick and Morty". O objetivo do projeto é criar um aplicativo que consome a API pública da série, permitindo que os usuários busquem personagens, vejam detalhes e gerenciem a paginação dos resultados.
 
-> **Note**: Make sure you have completed the [React Native - Environment Setup](https://reactnative.dev/docs/environment-setup) instructions till "Creating a new application" step, before proceeding.
+## Funcionalidades
 
-## Step 1: Start the Metro Server
+- **Desenvolvimento de Interfaces**: Criação de interfaces intuitivas e responsivas para uma melhor experiência do usuário.
+- **Navegação de Telas**: Implementação de navegação entre diferentes telas usando a biblioteca `@react-navigation/native`.
+- **Criação e Reutilização de Componentes**: Desenvolvimento de componentes reutilizáveis para otimizar o código e facilitar a manutenção.
+- **Uso de Hooks**: Aproveitamento de hooks do React para gerenciar estados e efeitos colaterais.
+- **Integração com API**: Consumo da API pública do Rick and Morty para buscar e listar personagens.
+- **Paginação**: Implementação de paginação para gerenciar a exibição dos dados consumidos da API.
+- **Página 404**: Criação de uma página que é exibida quando um personagem buscado não existe na API.
 
-First, you will need to start **Metro**, the JavaScript _bundler_ that ships _with_ React Native.
+## Tecnologias Utilizadas
 
-To start Metro, run the following command from the _root_ of your React Native project:
+- **React Native**: Framework para desenvolvimento de aplicativos móveis.
+- **TypeScript**: Superset do JavaScript que adiciona tipagem estática ao código.
+- **Axios**: Biblioteca para fazer requisições HTTP.
+- **React Navigation**: Biblioteca para navegação entre telas.
+- **Aliases**: O projeto utiliza aliases para facilitar as importações, tornando o código mais limpo e organizado.
 
-```bash
-# using npm
-npm start
+## Como Executar o Projeto
 
-# OR using Yarn
-yarn start
-```
+Para rodar este projeto em sua máquina, siga as instruções abaixo:
 
-## Step 2: Start your Application
+1. **Clone o repositório**:
+   ```bash
+   git clone https://github.com/othongonzaga/projetoRickAndMortyReactNative.git
+   cd projetoRickAndMortyReactNative
+   
+2. **Instale as dependências**:
+   ```bash
+   npm install
 
-Let Metro Bundler run in its _own_ terminal. Open a _new_ terminal from the _root_ of your React Native project. Run the following command to start your _Android_ or _iOS_ app:
-
-### For Android
-
-```bash
-# using npm
-npm run android
-
-# OR using Yarn
-yarn android
-```
-
-### For iOS
-
-```bash
-# using npm
-npm run ios
-
-# OR using Yarn
-yarn ios
-```
-
-If everything is set up _correctly_, you should see your new app running in your _Android Emulator_ or _iOS Simulator_ shortly provided you have set up your emulator/simulator correctly.
-
-This is one way to run your app — you can also run it directly from within Android Studio and Xcode respectively.
-
-## Step 3: Modifying your App
-
-Now that you have successfully run the app, let's modify it.
-
-1. Open `App.tsx` in your text editor of choice and edit some lines.
-2. For **Android**: Press the <kbd>R</kbd> key twice or select **"Reload"** from the **Developer Menu** (<kbd>Ctrl</kbd> + <kbd>M</kbd> (on Window and Linux) or <kbd>Cmd ⌘</kbd> + <kbd>M</kbd> (on macOS)) to see your changes!
-
-   For **iOS**: Hit <kbd>Cmd ⌘</kbd> + <kbd>R</kbd> in your iOS Simulator to reload the app and see your changes!
-
-## Congratulations! :tada:
-
-You've successfully run and modified your React Native App. :partying_face:
-
-### Now what?
-
-- If you want to add this new React Native code to an existing application, check out the [Integration guide](https://reactnative.dev/docs/integration-with-existing-apps).
-- If you're curious to learn more about React Native, check out the [Introduction to React Native](https://reactnative.dev/docs/getting-started).
-
-# Troubleshooting
-
-If you can't get this to work, see the [Troubleshooting](https://reactnative.dev/docs/troubleshooting) page.
-
-# Learn More
-
-To learn more about React Native, take a look at the following resources:
-
-- [React Native Website](https://reactnative.dev) - learn more about React Native.
-- [Getting Started](https://reactnative.dev/docs/environment-setup) - an **overview** of React Native and how setup your environment.
-- [Learn the Basics](https://reactnative.dev/docs/getting-started) - a **guided tour** of the React Native **basics**.
-- [Blog](https://reactnative.dev/blog) - read the latest official React Native **Blog** posts.
-- [`@facebook/react-native`](https://github.com/facebook/react-native) - the Open Source; GitHub **repository** for React Native.
+3. **Execute o projeto**:
+   ```bash
+   npm start
