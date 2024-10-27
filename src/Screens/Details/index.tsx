@@ -77,14 +77,20 @@ export default function DetailsScreen() {
           setIsFiltered(true);
           setCacheCharacters(fetchResponse?.data.results);
           setNextPageUrl(null);
+        } else if (!fetchResponse?.data?.results?.length) {
+          navigation.navigate('NotFound');
         } else {
           throw new Error('Unexpected API response');
         }
       } catch (error) {
-        console.error(error);
-        setError(
-          'Something went wrong while searching. Please try again later.',
-        );
+        if (axios.isAxiosError(error) && error.response?.status === 404) {
+          navigation.navigate('NotFound');
+        } else {
+          console.error(error);
+          setError(
+            'Something went wrong while searching. Please try again later.',
+          );
+        }
       }
     }
   };
